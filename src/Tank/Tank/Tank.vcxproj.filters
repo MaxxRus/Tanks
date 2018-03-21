@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\GameObj">
+      <UniqueIdentifier>{1a6e2162-d860-46d3-996e-756bfb074445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GameObj">
+      <UniqueIdentifier>{365c5857-4084-48b4-bb37-d19058c7eae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\DestructObj">
+      <UniqueIdentifier>{0dbe51e0-d529-440a-8532-20cbf5a43ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\DestructObj">
+      <UniqueIdentifier>{022790ff-4838-4567-b443-2dd9b2481542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Border">
+      <UniqueIdentifier>{642bdf8a-73d7-43ba-b39d-d5e1089ed260}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameObj.h">
+      <Filter>Файлы заголовков\GameObj</Filter>
+    </ClInclude>
+    <ClInclude Include="DestructObj.h">
+      <Filter>Файлы заголовков\DestructObj</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameObj.cpp">
+      <Filter>Исходные файлы\GameObj</Filter>
+    </ClCompile>
+    <ClCompile Include="DestructObj.cpp">
+      <Filter>Исходные файлы\DestructObj</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
