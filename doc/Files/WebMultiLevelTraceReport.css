@@ -1,0 +1,177 @@
+body
+{
+
+}
+
+a
+{
+  text-decoration:none;
+}
+
+.WholeTraceReportCointainerDiv
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  width: 99%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  margin-bottom: 30px;
+}
+
+.TraceReportContainerDiv
+{
+  width: 100%;
+}
+
+.TraceReportHeaderDiv
+{
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.TraceQueryDiv
+{
+  /*margin-top: 20px;*/
+  margin-right: 40px;
+  /*padding-top: 10px;*/
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 20px;
+
+  /*margin-bottom: 40px;
+  margin-top: 20px;
+  margin-right: 40px;
+  margin-left: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-width: thin;
+  border-style: solid;
+  border-color: #99ccff;*/
+}
+
+.RecContainerRowDefault, .RecContainerRowLevel0, .RecContainerRowLevel1, .RecContainerRowLevel2, .RecContainerRowLevel3, .RecContainerRowLevel4, .RecContainerRowLevel5
+{
+  float: none;
+  padding-top: 5px;
+  width: 100%;
+  background-color: #E6F0FF;
+}
+
+.RecContainerDivDefault, .RecContainerDivLevel0, .RecContainerDivLevel1, .RecContainerDivLevel2, .RecContainerDivLevel3, .RecContainerDivLevel4, .RecContainerDivLevel5
+{
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.ChildRecSpacing
+{
+  padding-left: 10px;
+}
+
+.imgVAlign
+{
+  vertical-align: middle;
+}
+
+.RecordHeaderDivDefault, .RecordHeaderDivLevel0, .RecordHeaderDivLevel1, .RecordHeaderDivLevel2, .RecordHeaderDivLevel3, .RecordHeaderDivLevel4, .RecordHeaderDivLevel5
+{
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color: #99ccff;
+  font-weight: bold;
+  color: #16438D;
+  margin-right: 10px;
+  font-size: 1.1em;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 2px;
+}
+
+
+.RecordTitleDivDefault, .RecordTitleDivLevel0, .RecordTitleDivLevel1, .RecordTitleDivLevel2, .RecordTitleDivLevel3, .RecordTitleDivLevel4, .RecordTitleDivLevel5
+{
+  padding-left: 5px;
+}
+
+
+.RecordTitleTextDefault, .RecordTitleTextLevel0, .RecordTitleTextLevel1, .RecordTitleTextLevel2, .RecordTitleTextLevel3, .RecordTitleTextLevel4, .RecordTitleTextLevel5
+{
+
+}
+
+.DispIDDefault, .DispIDLevel0, .DispIDLevel1, .DispIDLevel2, .DispIDLevel3, .DispIDLevel4, .DispIDLevel5
+{
+
+}
+
+.DescDivDefault, .DescDivLevel0, .DescDivLevel1, .DescDivLevel2, .DescDivLevel3, .DescDivLevel4, .DescDivLevel5
+{
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+
+.LeftBorderDefault, .LeftBorderLevel0 , .LeftBorderLevel1, .LeftBorderLevel2, .LeftBorderLevel3, .LeftBorderLevel4, .LeftBorderLevel5
+{
+  border-left: 1px dashed #7BA5EA;;
+  border-right: 1px dashed #7BA5EA;
+  padding-right: 10px;
+}
+
+.TraceIntoRowDefault, .TraceIntoRowLevel0, .TraceIntoRowLevel1, .TraceIntoRowLevel2, .TraceIntoRowLevel3, .TraceIntoRowLevel4, .TraceIntoRowLevel5
+{
+
+}
+
+.LeftBorderAssoDefault, .LeftBorderAssoLevel0 , .LeftBorderAssoLevel1, .LeftBorderAssoLevel2, .LeftBorderAssoLevel3, .LeftBorderAssoLevel4, .LeftBorderAssoLevel5
+{
+  border-left: #000000;
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+
+.NoTraceRecFoundDiv
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85em;
+  color: #666666;
+  padding: 20px;
+}
+
+.lnkStd {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:  0.75em;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #0000ff;
+}
+
+.lnkStdNoUnderline
+ {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:  0.75em;
+  cursor: pointer;
+  color: #1C54B2;
+}
+
+.lnkStdNoLinkStyle
+ {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:  0.75em;
+  color: #000000;
+}
+
+.AssoText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #103167;
+  font-size: 1.1em
+}
+
+.SuspectText
+{
+  color: #CC0000;
+}

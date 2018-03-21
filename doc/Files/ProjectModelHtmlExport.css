@@ -1,0 +1,274 @@
+.RepositoryObjectHeaderName{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  top:0px;
+  font-size: 1em;
+  color: #000000;
+  text-decoration: none;
+  padding-left: 4;
+  background: transparent;
+  font-weight: bold;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-align: top;
+}
+.RecordTypeHeaderName{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  top:0px;
+  font-size: 1em;
+  color: gray;
+  text-decoration: none;
+  padding-left: 0;
+  background: transparent;
+  font-weight: bold;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-align: top;
+}
+a
+{
+  text-decoration:none;
+  color:blue;
+}
+.imgVAlign
+ {
+   vertical-align: middle;
+ }
+.imgVAlignTopRight
+ {
+   vertical-align: Top;
+   text-align: right;
+ }
+
+.ProjectName
+{
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #365f91;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: transparent;
+	text-align: left;
+        valign:center;
+}
+.BaselineName
+{
+	font-size: 1em;
+	color: #365f91;
+	font-family: Arial, Helvetica, sans-serif;
+        padding-left: 35px;
+	background-color: transparent;
+	text-align: left;
+        padding-top: 5px;
+}
+
+.TitleText
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  top:0px;
+  font-size: 1.20em;
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+  background: #E6F0FF;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  text-align: top;
+}
+
+.FieldCaption
+{
+  width:150px;
+  left: 0px;
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: .75em;
+  font-weight: bold;
+  text-align: right;
+  color: #000000;
+  background-color: #E6F0FF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.FieldText
+{
+  width: 600px;      
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 0.75em;
+  color: #000000;
+  background: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 0px;
+  vertical-align: top;
+  text-align: left;
+}
+
+
+.TabFieldText
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 0.75em;
+  color: #000000;
+  vertical-align: top;
+  padding-left: 10px;
+  text-align: left;
+  border-color: white;
+  border-style: none;
+}
+.TabFieldTextDiscGroup
+{
+  width: 600px;      
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 0.75em;
+  color: #000000;
+  vertical-align: top;
+  text-align: left;
+  border-color: white;
+  border-style: none;
+}
+.TabFieldTextNoPadding
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 0.75em;
+  color: #000000;
+  vertical-align: top;
+  text-align: left;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 32px;
+  padding-right: 0px;
+  border-color: white;
+  border-style: none;
+}
+
+.TabIdFieldText , .lnkStdNoUnderline, .TadIdFieldText
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size:  0.75em;
+  cursor: pointer;
+  color: #0000ff;
+  padding-left: 10px;
+  vertical-align: top;
+  white-space: nowrap;
+  padding-right: 2px;
+}
+
+.RecordTypeHeader
+{
+	font-size: 1em;
+	color: darkblue;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: left;
+}
+.RecordTypeHeaderTitle2
+{
+	font-size: 0.9em;
+	color: darkblue;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: left;
+}
+.AboutDlgTitle1
+{
+	font-size: 1.4em;
+	color: #365f91;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: left;
+}
+.AboutDlgTitle2
+{
+	font-size: 1em;
+	color: #365f91;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: left;
+}
+
+.WebURL, .WinURL
+{
+	font-size: 0.7em;
+	color: darkblue;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: right;
+}
+.AboutURL
+{
+	font-weight: bold;
+	font-size: 8pt;
+	color: darkblue;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	background-color: transparent;
+	text-align: right;
+        valign:top;
+}
+.HeaderTableBackground
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 1em;
+  border:none;
+  overflow:visible;
+  background-color: #e6f0ff;
+}
+.OuterTable{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: ;
+  border:none;
+  width:760px;
+  overflow:visible;
+  background-color: white;
+}
+
+.DataTableBackground
+{
+	background-color: #e6f0ff;	
+}
+
+.tabSecHdr{
+  background-color: #E8F3FF;
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 0.85em;
+  font-weight: bold;
+  height: 25px;
+  padding-left: 5;
+  padding-right: 5;
+  padding-top: 3;
+  padding-bottom: 5
+}
+
+.nsChildTabRuleLine
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top-width: 0.01em;
+  border-top-color: #E6F0FF;
+  border-top-style: solid;
+  height:2px;
+  line-height:1px;
+  padding-bottom:0px;
+  font-size: 0.55em;
+}
+.PreviewChildTab
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 1em;
+  width:660px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+Header
+{
+  font-family: Arial, Helvetica, sans-serif, Verdana;
+  font-size: 1em;
+  width:550px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: red;
+}
