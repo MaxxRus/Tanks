@@ -115,12 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Border.h" />
     <ClInclude Include="DestructObj.h" />
     <ClInclude Include="GameObj.h" />
+    <ClInclude Include="Gold.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Border.cpp" />
     <ClCompile Include="DestructObj.cpp" />
     <ClCompile Include="GameObj.cpp" />
+    <ClCompile Include="Gold.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
