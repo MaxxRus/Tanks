@@ -37,6 +37,36 @@
     <Filter Include="Исходные файлы\Gold">
       <UniqueIdentifier>{09caed47-8d88-492b-ac76-3cf24fa53b99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Wall">
+      <UniqueIdentifier>{7c70bf31-3d2a-4dee-83bd-389d57de5dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Wall">
+      <UniqueIdentifier>{202a4c33-e370-4c33-8023-79d106334ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Area">
+      <UniqueIdentifier>{d2112494-ad0c-4ca7-b614-da26f9fa6974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Area">
+      <UniqueIdentifier>{2b477ae1-8a68-4acf-83e4-9ab7d2c2a4bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MoveObj">
+      <UniqueIdentifier>{9c71f7a8-a7c2-4d33-a6c8-57500fecd91f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MoveObj">
+      <UniqueIdentifier>{1bf6d44e-f824-428c-a1bc-fe05c84a3717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Tank">
+      <UniqueIdentifier>{1737ec71-fef4-42c2-a6b8-0a4af6d0d557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Tank">
+      <UniqueIdentifier>{61b10fb6-ecc3-4b2f-9027-989fe86144df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Bullet">
+      <UniqueIdentifier>{49a0b005-c88a-4199-8a7e-a75b2f248fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Bullet">
+      <UniqueIdentifier>{b39bf5ae-1b22-4f3d-98ec-7dacfbf8ca0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObj.h">
@@ -51,6 +81,21 @@
     <ClInclude Include="Gold.h">
       <Filter>Файлы заголовков\Gold</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Файлы заголовков\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Area.h">
+      <Filter>Файлы заголовков\Area</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveObj.h">
+      <Filter>Файлы заголовков\MoveObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Файлы заголовков\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Файлы заголовков\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObj.cpp">
@@ -64,6 +109,21 @@
     </ClCompile>
     <ClCompile Include="Gold.cpp">
       <Filter>Исходные файлы\Gold</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Исходные файлы\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Area.cpp">
+      <Filter>Исходные файлы\Area</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveObj.cpp">
+      <Filter>Исходные файлы\MoveObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Исходные файлы\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Исходные файлы\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

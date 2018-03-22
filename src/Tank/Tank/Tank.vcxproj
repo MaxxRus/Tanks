@@ -115,16 +115,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Area.h" />
     <ClInclude Include="Border.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="DestructObj.h" />
     <ClInclude Include="GameObj.h" />
     <ClInclude Include="Gold.h" />
+    <ClInclude Include="MoveObj.h" />
+    <ClInclude Include="Tank.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Area.cpp" />
     <ClCompile Include="Border.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DestructObj.cpp" />
     <ClCompile Include="GameObj.cpp" />
     <ClCompile Include="Gold.cpp" />
+    <ClCompile Include="MoveObj.cpp" />
+    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
