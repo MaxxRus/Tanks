@@ -121,6 +121,7 @@
     <ClInclude Include="DestructObj.h" />
     <ClInclude Include="GameObj.h" />
     <ClInclude Include="Gold.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MoveObj.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Wall.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="GameObj.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="MoveObj.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>

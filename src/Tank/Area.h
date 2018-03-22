@@ -1,4 +1,3 @@
-#pragma once
 #include "DestructObj.h"
 class Area :
 	public DestructObj

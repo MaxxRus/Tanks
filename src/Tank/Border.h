@@ -1,4 +1,3 @@
-#pragma once
 #include "GameObj.h"
 class Border :
 	public GameObj

@@ -96,6 +96,9 @@
     <ClInclude Include="Bullet.h">
       <Filter>Файлы заголовков\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObj.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Исходные файлы\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

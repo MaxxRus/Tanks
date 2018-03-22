@@ -1,4 +1,3 @@
-#pragma once
 #include "DestructObj.h"
 class MoveObj :
 	public DestructObj
