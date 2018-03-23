@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -119,6 +119,7 @@
     <ClInclude Include="Border.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DestructObj.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="GameObj.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="main.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="Border.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DestructObj.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameObj.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="MoveObj.cpp" />
