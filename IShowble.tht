@@ -1,0 +1,61 @@
+#pragma once
+#include<Windows.h>
+#include<iostream>
+using namespace std;
+
+class IShowble
+{
+protected:
+	HANDLE handle;
+public:
+	IShowble()
+	{
+		handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	}
+	virtual void Show()=0;
+	virtual void UnShow(){ cout<<" "; }
+};
+
+class ShowRedTank : public IShowble
+{
+public:
+	virtual void Show()
+	{
+		SetConsoleTextAttribute(handle, FOREGROUND_RED);
+		cout<<"#";
+		SetConsoleTextAttribute(handle, FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+	}
+};
+
+class ShowGreenTank : public IShowble
+{
+public:
+	virtual void Show()
+	{
+		SetConsoleTextAttribute(handle, FOREGROUND_GREEN);
+		cout<<"#";
+		SetConsoleTextAttribute(handle, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	}
+};
+
+class ShowRedBullet : public IShowble
+{
+public:
+	virtual void Show()
+	{
+		SetConsoleTextAttribute(handle, FOREGROUND_GREEN);
+		cout<<"-";
+		SetConsoleTextAttribute(handle, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	}
+};
+
+class ShowGreenBullet : public IShowble
+{
+public:
+	virtual void Show()
+	{
+		SetConsoleTextAttribute(handle, FOREGROUND_GREEN);
+		cout<<"-";
+		SetConsoleTextAttribute(handle, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	}
+};
