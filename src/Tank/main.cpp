@@ -8,9 +8,6 @@
 
 using namespace std;
 
-
-
-
 class Deskard
 {
 private:
@@ -72,6 +69,8 @@ public:
 	}
 };
 
+
+
 class GameStatus
 {
 private:
@@ -84,30 +83,46 @@ public:
 	}
 };
 
-
 class GameObj 
 {
 private:
 	Deskard key;
-	char view;
+	//char view;
 public:
-	char show() 
-	{
-		return view;
-	}
-
-	
-	GameObj(Deskard value, char img) 
+	virtual GameObj* clone() const = 0;
+		
+	GameObj(Deskard value) 
 	{
 		key = value;
-		view = img;
+		//view = img;
+	}
+	/*void show() 
+	{
+		cout << view;
+	};*/
+};
+
+class Border : public GameObj
+{
+public:
+	virtual Border* clone() const { return new Border(); }
+
+	Border(Deskard value, char img) GameObj(Deskard value)
+	{
 	}
 };
 
+class GameController
+{
+public:
+	void createBorder() 
+	{
+	}
+};
 int main()
 {
 	HANDLE handl;
-	map <Deskard, GameObj> myMap;
+	map <Deskard, GameObj*> myMap;
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -119,9 +134,9 @@ int main()
 			{
 				Deskard temp;
 				temp.setCoord(i,j);
-				GameObj item(temp, '#');
+				//GameObj item(temp, '#');
 
-				myMap.insert(pair<Deskard, GameObj>(temp, item));
+				myMap.insert(temp, GameObj*(temp, '#'));
 			}
 		}
 	}
@@ -133,7 +148,7 @@ int main()
 		
 		SetConsoleCursorPosition(handl, temp.getCoord());
 		
-		cout  << test.show();
+		test.show();
 	}
 
 	system("Pause");
