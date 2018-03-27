@@ -4,6 +4,7 @@
 #include <map>
 #include <wincon.h>
 #include "main.h"
+#include <ctime>
 
 
 using namespace std;
@@ -76,7 +77,12 @@ class GameStatus
 private:
 	int sizeBoardX = 20;
 	int sizeBoardY;
+	int capacity = 40;
 public:
+	int getCapacty() 
+	{
+		return capacity;
+	}
 	int getSizeBoard() 
 	{
 		return sizeBoardX;
@@ -119,6 +125,23 @@ public:
 	
 };
 
+class Wall : public GameObj
+{
+	int hitpoint;
+public:
+	//virtual Border* clone() const { return new Border(); }
+
+	Wall(Deskard value, char img, int hit) : GameObj(value)
+	{
+		hitpoint = hit;
+	}
+	void show()
+	{
+		cout << '#';
+	}
+
+};
+
 class GameController
 {
 public:
@@ -128,11 +151,12 @@ public:
 };
 int main()
 {
+	srand(time(NULL));
 	HANDLE handl;
 	map <Deskard, GameObj*> myMap;
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
-
+	//create border
 	for (int i = 0; i < game.getSizeBoard(); i++)
 	{
 		for (int j = 0; j < game.getSizeBoard(); j++)
@@ -147,6 +171,50 @@ int main()
 			}
 		}
 	}
+
+	//create wall
+	int vector, x, y;
+	bool rightOrDown;
+
+	
+	for (int k = 0; k < game.getCapacty(); k++)
+	{
+		rightOrDown = rand() % 2;
+		x = rand() % (game.getSizeBoard() - 1);
+		y = rand() % (game.getSizeBoard() - 1);
+		if (rightOrDown)
+		{
+			do
+			{
+				vector = rand() % 5 + 1;
+			} while ((x + vector) >= game.getSizeBoard());
+			for (int i = x; i < (x + vector); i++)
+			{
+				Deskard temp;
+				temp.setCoord(i, y);
+				//GameObj item(temp, '#');
+
+				myMap.insert(pair<Deskard, GameObj*>(temp, new Wall(temp, '#', 1)));
+			}
+		}
+		else
+		{
+			do
+			{
+				vector = rand() % 5 + 1;
+			} while ((y + vector) >= game.getSizeBoard());
+			for (int i = y; i < (y + vector); i++)
+			{
+				Deskard temp;
+				temp.setCoord(x, i);
+				//GameObj item(temp, '#');
+
+				myMap.insert(pair<Deskard, GameObj*>(temp, new Wall(temp, '#', 1)));
+			}
+		}
+
+	}
+	
 	for (auto it = myMap.begin(); it != myMap.end(); ++it)
 	{
 		Deskard temp = it->first;
