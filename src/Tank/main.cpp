@@ -142,6 +142,23 @@ public:
 
 };
 
+class Gold : public GameObj
+{
+	int hitpoint;
+public:
+	//virtual Border* clone() const { return new Border(); }
+
+	Gold(Deskard value, char img, int hit) : GameObj(value)
+	{
+		hitpoint = hit;
+	}
+	void show()
+	{
+		cout << '@';
+	}
+
+};
+
 class GameController
 {
 public:
@@ -207,13 +224,21 @@ int main()
 			{
 				Deskard temp;
 				temp.setCoord(x, i);
-				//GameObj item(temp, '#');
-
 				myMap.insert(pair<Deskard, GameObj*>(temp, new Wall(temp, '#', 1)));
 			}
 		}
 
 	}
+
+	//create gold
+	{
+		Deskard temp;
+		temp.setCoord(game.getSizeBoard() - 1, game.getSizeBoard() / 2);
+		//GameObj item(temp, '#');
+
+		myMap[temp] = new Gold(temp, '@', 1);
+	}
+	
 	
 	for (auto it = myMap.begin(); it != myMap.end(); ++it)
 	{
