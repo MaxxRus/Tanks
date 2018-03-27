@@ -96,6 +96,10 @@ private:
 	//char view;
 public:
 	//virtual GameObj* clone() const = 0;
+	Deskard getKey()
+	{
+		return key;
+	}
 		
 	GameObj(Deskard value) 
 	{
@@ -247,12 +251,33 @@ int main()
 
 	}
 
-	//create gold
+	//create gold and fortress
 	{
 		Deskard temp;
-		temp.setCoord((int)(game.getSizeBoard() / 2), (game.getSizeBoard() - 2) );
-		//GameObj item(temp, '#');
+		int xGold;
+		int yGold;
+		xGold = (int)(game.getSizeBoard() / 2);
+		yGold = (game.getSizeBoard() - 2);
+		
+		temp.setCoord(xGold, yGold);
+		
 		myMap.at(temp) = new Gold(temp, '@', 1);
+
+		// create fortress
+		temp.setCoord(xGold-1, yGold);
+		myMap.at(temp) = new Wall(temp, '#', 1);
+
+		temp.setCoord(xGold - 1, yGold-1);
+		myMap.at(temp) = new Wall(temp, '#', 1);
+
+		temp.setCoord(xGold, yGold-1);
+		myMap.at(temp) = new Wall(temp, '#', 1);
+
+		temp.setCoord(xGold+1, yGold-1);
+		myMap.at(temp) = new Wall(temp, '#', 1);
+
+		temp.setCoord(xGold + 1, yGold);
+		myMap.at(temp) = new Wall(temp, '#', 1);
 	}
 	
 	
