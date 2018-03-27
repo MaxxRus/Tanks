@@ -96,6 +96,8 @@ public:
 		key = value;
 		//view = img;
 	}
+
+	virtual void show() = 0;
 	/*void show() 
 	{
 		cout << view;
@@ -110,9 +112,11 @@ public:
 	Border(Deskard value, char img): GameObj(value)
 	{
 	}
-	virtual void show()
+	void show()
 	{
-	};
+		cout << '#';
+	}
+	
 };
 
 class GameController
@@ -147,11 +151,11 @@ int main()
 	{
 		Deskard temp = it->first;
 		//temp.Print();
-		GameObj test = it->second;
+		GameObj* test = it->second;
 		
 		SetConsoleCursorPosition(handl, temp.getCoord());
 		
-		test.show();
+		test->show();
 	}
 
 	system("Pause");
