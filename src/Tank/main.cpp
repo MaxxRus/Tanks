@@ -125,6 +125,21 @@ public:
 	
 };
 
+class Area : public GameObj
+{
+public:
+	//virtual Border* clone() const { return new Border(); }
+
+	Area(Deskard value, char img) : GameObj(value)
+	{
+	}
+	void show()
+	{
+		cout << ' ';
+	}
+
+};
+
 class Wall : public GameObj
 {
 	int hitpoint;
@@ -173,18 +188,20 @@ int main()
 	map <Deskard, GameObj*> myMap;
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
-	//create border
+	//create border and Area
 	for (int i = 0; i < game.getSizeBoard(); i++)
 	{
 		for (int j = 0; j < game.getSizeBoard(); j++)
 		{
+			Deskard temp;
+			temp.setCoord(i, j);
 			if ((i == 0) || (i == (game.getSizeBoard() - 1)) || (j == 0) || (j == (game.getSizeBoard() - 1)))
 			{
-				Deskard temp;
-				temp.setCoord(i,j);
-				//GameObj item(temp, '#');
-
 				myMap.insert(pair<Deskard, GameObj*> (temp, new Border(temp, '#')));
+			}
+			else 
+			{
+				myMap.insert(pair<Deskard, GameObj*>(temp, new Area(temp, ' ')));
 			}
 		}
 	}
@@ -211,7 +228,7 @@ int main()
 				temp.setCoord(i, y);
 				//GameObj item(temp, '#');
 
-				myMap.insert(pair<Deskard, GameObj*>(temp, new Wall(temp, '#', 1)));
+				myMap.at(temp) =new Wall(temp, '#', 1);
 			}
 		}
 		else
@@ -224,7 +241,7 @@ int main()
 			{
 				Deskard temp;
 				temp.setCoord(x, i);
-				myMap.insert(pair<Deskard, GameObj*>(temp, new Wall(temp, '#', 1)));
+				myMap.at(temp) = new Wall(temp, '#', 1);
 			}
 		}
 
@@ -233,10 +250,9 @@ int main()
 	//create gold
 	{
 		Deskard temp;
-		temp.setCoord(game.getSizeBoard() - 1, game.getSizeBoard() / 2);
+		temp.setCoord((int)(game.getSizeBoard() / 2), (game.getSizeBoard() - 2) );
 		//GameObj item(temp, '#');
-
-		myMap[temp] = new Gold(temp, '@', 1);
+		myMap.at(temp) = new Gold(temp, '@', 1);
 	}
 	
 	
