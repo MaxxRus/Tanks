@@ -89,7 +89,7 @@ private:
 	Deskard key;
 	//char view;
 public:
-	virtual GameObj* clone() const = 0;
+	//virtual GameObj* clone() const = 0;
 		
 	GameObj(Deskard value) 
 	{
@@ -105,11 +105,14 @@ public:
 class Border : public GameObj
 {
 public:
-	virtual Border* clone() const { return new Border(); }
+	//virtual Border* clone() const { return new Border(); }
 
-	Border(Deskard value, char img) GameObj(Deskard value)
+	Border(Deskard value, char img): GameObj(value)
 	{
 	}
+	virtual void show()
+	{
+	};
 };
 
 class GameController
@@ -136,7 +139,7 @@ int main()
 				temp.setCoord(i,j);
 				//GameObj item(temp, '#');
 
-				myMap.insert(temp, GameObj*(temp, '#'));
+				myMap.insert(pair<Deskard, GameObj*> (temp, new Border(temp, '#')));
 			}
 		}
 	}
