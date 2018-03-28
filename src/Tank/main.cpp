@@ -192,12 +192,13 @@ int main()
 	map <Deskard, GameObj*> myMap;
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
+	Deskard temp;
 	//create border and Area
 	for (int i = 0; i < game.getSizeBoard(); i++)
 	{
 		for (int j = 0; j < game.getSizeBoard(); j++)
 		{
-			Deskard temp;
+			
 			temp.setCoord(i, j);
 			if ((i == 0) || (i == (game.getSizeBoard() - 1)) || (j == 0) || (j == (game.getSizeBoard() - 1)))
 			{
@@ -213,8 +214,7 @@ int main()
 	//create wall
 	int vector, x, y;
 	bool rightOrDown;
-
-	
+		
 	for (int k = 0; k < game.getCapacty(); k++)
 	{
 		rightOrDown = rand() % 2;
@@ -228,10 +228,9 @@ int main()
 			} while ((x + vector) >= game.getSizeBoard());
 			for (int i = x; i < (x + vector); i++)
 			{
-				Deskard temp;
+				
 				temp.setCoord(i, y);
-				//GameObj item(temp, '#');
-
+				delete myMap[temp];
 				myMap.at(temp) =new Wall(temp, '#', 1);
 			}
 		}
@@ -243,8 +242,9 @@ int main()
 			} while ((y + vector) >= game.getSizeBoard());
 			for (int i = y; i < (y + vector); i++)
 			{
-				Deskard temp;
+				
 				temp.setCoord(x, i);
+				delete myMap[temp];
 				myMap.at(temp) = new Wall(temp, '#', 1);
 			}
 		}
@@ -253,7 +253,7 @@ int main()
 
 	//create gold and fortress
 	{
-		Deskard temp;
+		
 		int xGold;
 		int yGold;
 		xGold = (int)(game.getSizeBoard() / 2);
@@ -261,29 +261,37 @@ int main()
 		
 		temp.setCoord(xGold, yGold);
 		
+		delete myMap[temp];
 		myMap.at(temp) = new Gold(temp, '@', 1);
 
 		// create fortress
 		temp.setCoord(xGold-1, yGold);
+		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
 		temp.setCoord(xGold - 1, yGold-1);
+		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
 		temp.setCoord(xGold, yGold-1);
+		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
 		temp.setCoord(xGold+1, yGold-1);
+		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
 		temp.setCoord(xGold + 1, yGold);
+		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 	}
 	
+	//create tank
 	
+	// test input	
 	for (auto it = myMap.begin(); it != myMap.end(); ++it)
 	{
-		Deskard temp = it->first;
+		temp = it->first;
 		//temp.Print();
 		GameObj* test = it->second;
 		
