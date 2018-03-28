@@ -3,11 +3,14 @@
 #include <windows.h>
 #include <map>
 #include <wincon.h>
+#include <conio.h>
 #include "main.h"
 #include <ctime>
 
 
 using namespace std;
+
+enum eDiretion { LEFT = 97, RIGHT = 100, UP = 119, DOWN = 115, GAMEOVER = 0, FIRE};
 
 class Deskard
 {
@@ -29,15 +32,16 @@ public:
 		return key;
 	}
 
-	/*COORD getCoordConsol() 
+	int getX() 
 	{
-		COORD temp;
-		temp.X = key.Y;
-		temp.Y = key.X;
-		return temp;
-	}*/
+		return X;
+	}
 
-	
+	int getY()
+	{
+		return Y;
+	}
+
 	void setCoord(int X, int Y)
 	{
 		key.X = X;
@@ -78,6 +82,7 @@ private:
 	int sizeBoardX = 20;
 	int sizeBoardY;
 	int capacity = 40;
+	//enum run ()
 public:
 	int getCapacty() 
 	{
@@ -100,12 +105,43 @@ public:
 	{
 		return key;
 	}
+
+	Deskard neighbor(eDiretion dir) 
+	{
+		Deskard iAm = this->getKey;
+		Deskard result;
+		int kX = iAm.getX();
+		int kY = iAm.getY();
+		switch (dir)
+		{
+		case UP:
+			result.setCoord(kX, kY--);
+			return result;
+			break;
+		case DOWN:
+			result.setCoord(kX, kY++);
+			return result;
+			break;
+		case LEFT:
+			result.setCoord(kX--, kY);
+			return result;
+			break;
+		case RIGHT:
+			result.setCoord(kX++, kY);
+			return result;
+			break;
+		}
+	}
+
+
 		
 	GameObj(Deskard value) 
 	{
 		key = value;
 		//view = img;
 	}
+
+	
 
 	virtual void show() = 0;
 	/*void show() 
@@ -177,6 +213,96 @@ public:
 	}
 
 };
+
+class kbord
+{
+public:
+	bool runPleyer(eDiretion dir)
+	{
+		if (_kbhit())
+		{
+			switch (_getch())
+			{
+			case 'a':
+				dir = LEFT;
+				return true;
+				break;
+			case 'd':
+				dir = RIGHT;
+				return true;
+				break;
+			case 'w':
+				dir = UP;
+				return true;
+				break;
+			case 's':
+				dir = DOWN;
+				return true;
+				break;
+			case ' ':
+				dir = FIRE;
+				return true;
+				break;
+			}
+			return false;
+		}
+	}
+};
+
+
+class Tank : public GameObj
+{
+	int hitpoint;
+	kbord dir;
+
+public:
+
+	//void move(eDiretion dir)
+	//{
+	//	Deskard point = this->getKey;
+	//	switch (dir)
+	//	{
+	//	case UP:
+
+	//		/*SetConsoleCursorPosition(handl, coordTank);
+	//		cout << " ";
+	//		coordTank.Y--;*/
+	//		this->show();
+	//		break;
+	//	case DOWN:
+	//		/*SetConsoleCursorPosition(handl, coordTank);
+	//		cout << " ";
+	//		coordTank.Y++;*/
+	//		this->show();
+	//		break;
+	//	case LEFT:
+	//		/*SetConsoleCursorPosition(handl, coordTank);
+	//		cout << " ";
+	//		coordTank.X--;*/
+	//		this->show();
+	//		break;
+	//	case RIGHT:
+	//		/*SetConsoleCursorPosition(handl, coordTank);
+	//		cout << " ";
+	//		coordTank.X++;*/
+	//		this->show();
+	//		break;
+
+	//	}
+	//}
+	
+
+	Tank(Deskard value, char img, int hit) : GameObj(value)
+	{
+		hitpoint = hit;
+	}
+	void show()
+	{
+		cout << 'X';
+	}
+
+};
+
 
 class GameController
 {
@@ -253,40 +379,53 @@ int main()
 
 	//create gold and fortress
 	{
-		
+
 		int xGold;
 		int yGold;
 		xGold = (int)(game.getSizeBoard() / 2);
 		yGold = (game.getSizeBoard() - 2);
-		
+
 		temp.setCoord(xGold, yGold);
-		
+
 		delete myMap[temp];
 		myMap.at(temp) = new Gold(temp, '@', 1);
 
 		// create fortress
-		temp.setCoord(xGold-1, yGold);
+		temp.setCoord(xGold - 1, yGold);
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
-		temp.setCoord(xGold - 1, yGold-1);
+		temp.setCoord(xGold - 1, yGold - 1);
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
-		temp.setCoord(xGold, yGold-1);
+		temp.setCoord(xGold, yGold - 1);
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
-		temp.setCoord(xGold+1, yGold-1);
+		temp.setCoord(xGold + 1, yGold - 1);
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
 		temp.setCoord(xGold + 1, yGold);
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
+
+
+		//create tank
+
+		temp.setCoord(xGold-2, yGold);
+		GameObj* pTank = new  Tank(temp, 'X', 1);
+		delete myMap[temp];
+		myMap.at(temp) = pTank;
+		//myMap.at(temp) = new Tank(temp, 'X', 1);
+
+		Deskard myTest = pTank->neighbor(UP);
+
+		myTest.Print();
 	}
 	
-	//create tank
+	
 	
 	// test input	
 	for (auto it = myMap.begin(); it != myMap.end(); ++it)
