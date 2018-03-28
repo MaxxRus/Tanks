@@ -145,6 +145,7 @@ public:
 	
 
 	virtual void show() = 0;
+	virtual string iAmObj() = 0;
 	/*void show() 
 	{
 		cout << view;
@@ -159,6 +160,12 @@ public:
 	Border(Deskard value, char img): GameObj(value)
 	{
 	}
+
+	string iAmObj() 
+	{
+		return "Border";
+	}
+
 	void show()
 	{
 		cout << '#';
@@ -174,6 +181,12 @@ public:
 	Area(Deskard value, char img) : GameObj(value)
 	{
 	}
+
+	string iAmObj()
+	{
+		return "Area";
+	}
+
 	void show()
 	{
 		cout << ' ';
@@ -191,6 +204,12 @@ public:
 	{
 		hitpoint = hit;
 	}
+
+	string iAmObj()
+	{
+		return "Wall";
+	}
+
 	void show()
 	{
 		cout << '#';
@@ -208,6 +227,12 @@ public:
 	{
 		hitpoint = hit;
 	}
+
+	string iAmObj()
+	{
+		return "Gold";
+	}
+
 	void show()
 	{
 		cout << '@';
@@ -297,6 +322,12 @@ public:
 	{
 		hitpoint = hit;
 	}
+
+	string iAmObj()
+	{
+		return "Tank";
+	}
+
 	void show()
 	{
 		cout << 'X';
@@ -427,7 +458,9 @@ int main()
 
 		//debugg
 		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
-		myTest.Print();
+		string sey;
+		sey = pTank->iAmObj();
+		cout << sey;
 	}
 	
 	
