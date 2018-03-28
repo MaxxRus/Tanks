@@ -108,7 +108,7 @@ public:
 
 	Deskard neighbor(eDiretion dir) 
 	{
-		Deskard iAm = this->getKey;
+		Deskard iAm = this->getKey();
 		Deskard result;
 		int kX = iAm.getX();
 		int kY = iAm.getY();
@@ -131,6 +131,7 @@ public:
 			return result;
 			break;
 		}
+		return iAm;
 	}
 
 
@@ -319,6 +320,8 @@ int main()
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
 	Deskard temp;
+	Deskard viewDebugging;
+	viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
 	//create border and Area
 	for (int i = 0; i < game.getSizeBoard(); i++)
 	{
@@ -422,6 +425,8 @@ int main()
 
 		Deskard myTest = pTank->neighbor(UP);
 
+		//debugg
+		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
 		myTest.Print();
 	}
 	
