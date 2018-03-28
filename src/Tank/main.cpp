@@ -131,7 +131,7 @@ public:
 			return result;
 			break;
 		}
-		return iAm;
+		//return iAm;
 	}
 
 
@@ -279,12 +279,16 @@ public:
 class Tank : public GameObj
 {
 	int hitpoint;
-	kbord dir;
+	eDiretion dir;
 
 public:
 
-	//void move(eDiretion dir)
-	//{
+	void move(eDiretion dir)
+	{
+		this->dir = dir;
+		//Deskard nextstep;
+		//nextstep = this->neighbor(dir);
+		
 	//	Deskard point = this->getKey;
 	//	switch (dir)
 	//	{
@@ -315,7 +319,7 @@ public:
 	//		break;
 
 	//	}
-	//}
+	}
 	
 
 	Tank(Deskard value, char img, int hit) : GameObj(value)
@@ -351,8 +355,7 @@ int main()
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
 	Deskard temp;
-	Deskard viewDebugging;
-	viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
+	
 	//create border and Area
 	for (int i = 0; i < game.getSizeBoard(); i++)
 	{
@@ -453,14 +456,29 @@ int main()
 		delete myMap[temp];
 		myMap.at(temp) = pTank;
 		//myMap.at(temp) = new Tank(temp, 'X', 1);
-
-		Deskard myTest = pTank->neighbor(UP);
-
+		
+		
 		//debugg
+		Deskard nextStep;
+		
+
+		Deskard viewDebugging;
+		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
 		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
-		string sey;
-		sey = pTank->iAmObj();
-		cout << sey;
+
+		cout << endl;
+		
+		pTank->getKey().Print();
+
+		cout << endl;
+
+		pTank->neighbor(RIGHT).Print();
+		//sey = pTank->iAmObj();
+		//cout << sey << endl;
+		//test.Print();
+		//pTank->neighbor().Print();
+		//pTank->getKey().Print();
+		//nextStep.Print();
 	}
 	
 	
