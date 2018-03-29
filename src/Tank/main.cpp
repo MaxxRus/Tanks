@@ -74,29 +74,54 @@ public:
 	}
 };
 
-//class IMovable 
-//{ 
-//public: virtual int Drine() = 0; 
-//};
-//
-//class DriveByKey : public IMovable 
-//{
-//public: 
-//	virtual int Drive(); 
-//};
-//
-//class Tank 
-//{
-//	IMovable drive; 
-//public: 
-//	Tank(IMovable move) :drive(move) 
-//	{
-//	}
-//	void Move() 
-//	{
-//		int direction = drive.Drive(); 
-//	}
-//};
+class IMovable 
+{ 
+public: virtual int Drine() = 0; 
+};
+
+class DriveByKey : public IMovable 
+{
+public: 
+	virtual int Drive(); 
+};
+
+class Pleyer : DriveByKey
+{
+	int Drive(eDiretion dir)
+	{
+		bool runPleyer(eDiretion dir);
+		{
+			if (_kbhit())
+			{
+				switch (_getch())
+				{
+				case 'a':
+					dir = LEFT;
+					return true;
+					break;
+				case 'd':
+					dir = RIGHT;
+					return true;
+					break;
+				case 'w':
+					dir = UP;
+					return true;
+					break;
+				case 's':
+					dir = DOWN;
+					return true;
+					break;
+				case ' ':
+					dir = FIRE;
+					return true;
+					break;
+				}
+				return false;
+			}
+		}
+	}
+	
+};
 
 class GameStatus
 {
@@ -126,6 +151,11 @@ public:
 	Deskard getKey()
 	{
 		return key;
+	}
+
+	void setKey(Deskard value)
+	{
+		this->key = value;
 	}
 
 	Deskard neighbor(eDiretion dir) 
@@ -265,36 +295,7 @@ public:
 class kbord
 {
 public:
-	bool runPleyer(eDiretion dir)
-	{
-		if (_kbhit())
-		{
-			switch (_getch())
-			{
-			case 'a':
-				dir = LEFT;
-				return true;
-				break;
-			case 'd':
-				dir = RIGHT;
-				return true;
-				break;
-			case 'w':
-				dir = UP;
-				return true;
-				break;
-			case 's':
-				dir = DOWN;
-				return true;
-				break;
-			case ' ':
-				dir = FIRE;
-				return true;
-				break;
-			}
-			return false;
-		}
-	}
+	
 };
 
 
@@ -302,8 +303,16 @@ class Tank : public GameObj
 {
 	int hitpoint;
 	eDiretion dir;
+	//IMovable drive;
 
 public:
+	/*Tank(IMovable move) :drive(move)
+	{
+	}
+	void Move()
+	{
+		int direction = drive.Drive();
+	}*/
 
 	void move(eDiretion dir)
 	{
@@ -477,13 +486,9 @@ int main()
 		GameObj* pTank = new  Tank(temp, 'X', 1);
 		delete myMap[temp];
 		myMap.at(temp) = pTank;
-		//myMap.at(temp) = new Tank(temp, 'X', 1);
-		
-		
+				
 		//debugg
-		Deskard nextStep;
 		
-
 		Deskard viewDebugging;
 		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
 		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
@@ -493,15 +498,30 @@ int main()
 		pTank->getKey().Print();
 
 		cout << endl;
-		Deskard myTest;
-		myTest = pTank->neighbor(RIGHT);
-		myTest.Print();
-		//pTank->neighbor(RIGHT).Print();
+		pTank->neighbor(LEFT).Print();
+		Deskard nextStep;
+		bool go = (myMap[pTank->neighbor(LEFT)]->iAmObj() == "Area");
+		if (go)
+		{
+			temp = pTank->getKey();
+			nextStep = pTank->neighbor(LEFT);
+			delete myMap[nextStep];
+			pTank->setKey(nextStep);
+			myMap.at(nextStep) = pTank;
+			
+			myMap[temp] = new Area(temp, ' ');
+			cout << "hjhlhkjhklhl;hh" << endl;
+			//map <Deskard, GameObj*> myMap[pTank->getKey()].swap(myMap[pTank->neighbor(UP)]);
+			//myMap[pTank.]
+		}
+		/*if  ()
+		{
+
+		}*/
 		//sey = pTank->iAmObj();
 		//cout << sey << endl;
 		//test.Print();
-		//pTank->neighbor().Print();
-		//pTank->getKey().Print();
+		
 		//nextStep.Print();
 	}
 	
