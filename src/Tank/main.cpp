@@ -74,7 +74,29 @@ public:
 	}
 };
 
-
+//class IMovable 
+//{ 
+//public: virtual int Drine() = 0; 
+//};
+//
+//class DriveByKey : public IMovable 
+//{
+//public: 
+//	virtual int Drive(); 
+//};
+//
+//class Tank 
+//{
+//	IMovable drive; 
+//public: 
+//	Tank(IMovable move) :drive(move) 
+//	{
+//	}
+//	void Move() 
+//	{
+//		int direction = drive.Drive(); 
+//	}
+//};
 
 class GameStatus
 {
@@ -471,8 +493,10 @@ int main()
 		pTank->getKey().Print();
 
 		cout << endl;
-
-		pTank->neighbor(RIGHT).Print();
+		Deskard myTest;
+		myTest = pTank->neighbor(RIGHT);
+		myTest.Print();
+		//pTank->neighbor(RIGHT).Print();
 		//sey = pTank->iAmObj();
 		//cout << sey << endl;
 		//test.Print();
