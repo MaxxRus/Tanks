@@ -26,6 +26,13 @@ public:
 		Y = 0;
 		key.Y = 0;
 	}
+	Deskard(int valueX, int valueY)
+	{
+		key.X = valueX;
+		X = valueX;
+		Y = valueY;
+		key.Y = valueY;
+	}
 	
 	COORD getCoord()
 	{
@@ -76,52 +83,42 @@ public:
 
 class IMovable 
 { 
-public: virtual int Drine() = 0; 
+public: virtual eDiretion Drive() = 0; 
 };
 
-class DriveByKey : public IMovable 
-{
-public: 
-	virtual int Drive(); 
-};
 
-class Pleyer : DriveByKey
+class Pleyer : public IMovable
 {
-	int Drive(eDiretion dir)
+public:
+	eDiretion Drive()
 	{
-		bool runPleyer(eDiretion dir);
+		eDiretion dir;
+		if (_kbhit())
 		{
-			if (_kbhit())
+			switch (_getch())
 			{
-				switch (_getch())
-				{
-				case 'a':
-					dir = LEFT;
-					return true;
-					break;
-				case 'd':
-					dir = RIGHT;
-					return true;
-					break;
-				case 'w':
-					dir = UP;
-					return true;
-					break;
-				case 's':
-					dir = DOWN;
-					return true;
-					break;
-				case ' ':
-					dir = FIRE;
-					return true;
-					break;
-				}
-				return false;
+			case 'a':
+				dir = LEFT;
+				break;
+			case 'd':
+				dir = RIGHT;
+				break;
+			case 'w':
+				dir = UP;
+				break;
+			case 's':
+				dir = DOWN;
+				break;
+			case ' ':
+				dir = FIRE;
+			break;
 			}
+			return dir;
 		}
 	}
-	
 };
+	
+
 
 class GameStatus
 {
@@ -145,6 +142,7 @@ class GameObj
 {
 private:
 	Deskard key;
+	
 	//char view;
 public:
 	//virtual GameObj* clone() const = 0;
@@ -188,9 +186,10 @@ public:
 
 
 		
-	GameObj(Deskard value) 
+	GameObj(Deskard value)
 	{
 		key = value;
+		
 		//view = img;
 	}
 
@@ -292,17 +291,14 @@ public:
 
 };
 
-class kbord
-{
-public:
-	
-};
+
 
 
 class Tank : public GameObj
 {
 	int hitpoint;
 	eDiretion dir;
+	HANDLE handl;
 	//IMovable drive;
 
 public:
@@ -353,9 +349,10 @@ public:
 	}
 	
 
-	Tank(Deskard value, char img, int hit) : GameObj(value)
+	Tank(Deskard value, char img, int hit, HANDLE handl) : GameObj(value)
 	{
 		hitpoint = hit;
+		this->handl = handl;
 	}
 
 	string iAmObj()
@@ -365,6 +362,7 @@ public:
 
 	void show()
 	{
+		SetConsoleCursorPosition(handl, this->getKey().getCoord());
 		cout << 'X';
 	}
 
@@ -373,85 +371,81 @@ public:
 
 class GameController
 {
-public:
-	void createBorder() 
-	{
-	}
-};
-int main()
-{
-	srand(time(NULL));
-	HANDLE handl;
-	map <Deskard, GameObj*> myMap;
-	GameStatus game;
-	handl = GetStdHandle(STD_OUTPUT_HANDLE);
-	Deskard temp;
 	
-	//create border and Area
-	for (int i = 0; i < game.getSizeBoard(); i++)
+	
+public:
+	
+	void createBorder(map <Deskard, GameObj*>& myMap, int sizeBoard)
 	{
-		for (int j = 0; j < game.getSizeBoard(); j++)
+		Deskard temp;
+		for (int i = 0; i < sizeBoard; i++)
 		{
-			
-			temp.setCoord(i, j);
-			if ((i == 0) || (i == (game.getSizeBoard() - 1)) || (j == 0) || (j == (game.getSizeBoard() - 1)))
+			for (int j = 0; j < sizeBoard; j++)
 			{
-				myMap.insert(pair<Deskard, GameObj*> (temp, new Border(temp, '#')));
-			}
-			else 
-			{
-				myMap.insert(pair<Deskard, GameObj*>(temp, new Area(temp, ' ')));
+
+				temp.setCoord(i, j);
+				if ((i == 0) || (i == (sizeBoard - 1)) || (j == 0) || (j == (sizeBoard - 1)))
+				{
+					myMap.insert(pair<Deskard, GameObj*>(temp, new Border(temp, '#')));
+				}
+				else
+				{
+					myMap.insert(pair<Deskard, GameObj*>(temp, new Area(temp, ' ')));
+				}
 			}
 		}
 	}
 
-	//create wall
-	int vector, x, y;
-	bool rightOrDown;
-		
-	for (int k = 0; k < game.getCapacty(); k++)
+	void createWall(map <Deskard, GameObj*>& myMap, int sizeBoard, int capacty)
 	{
-		rightOrDown = rand() % 2;
-		x = rand() % (game.getSizeBoard() - 1);
-		y = rand() % (game.getSizeBoard() - 1);
-		if (rightOrDown)
-		{
-			do
-			{
-				vector = rand() % 5 + 1;
-			} while ((x + vector) >= game.getSizeBoard());
-			for (int i = x; i < (x + vector); i++)
-			{
-				
-				temp.setCoord(i, y);
-				delete myMap[temp];
-				myMap.at(temp) =new Wall(temp, '#', 1);
-			}
-		}
-		else
-		{
-			do
-			{
-				vector = rand() % 5 + 1;
-			} while ((y + vector) >= game.getSizeBoard());
-			for (int i = y; i < (y + vector); i++)
-			{
-				
-				temp.setCoord(x, i);
-				delete myMap[temp];
-				myMap.at(temp) = new Wall(temp, '#', 1);
-			}
-		}
+		Deskard temp;
+		int vector, x, y;
+		bool rightOrDown;
 
+		for (int k = 0; k < capacty; k++)
+		{
+			rightOrDown = rand() % 2;
+			x = rand() % (sizeBoard - 1);
+			y = rand() % (sizeBoard - 1);
+			if (rightOrDown)
+			{
+				do
+				{
+					vector = rand() % 5 + 1;
+				} while ((x + vector) >= sizeBoard);
+				for (int i = x; i < (x + vector); i++)
+				{
+
+					temp.setCoord(i, y);
+					delete myMap[temp];
+					myMap.at(temp) = new Wall(temp, '#', 1);
+				}
+			}
+			else
+			{
+				do
+				{
+					vector = rand() % 5 + 1;
+				} while ((y + vector) >= sizeBoard);
+				for (int i = y; i < (y + vector); i++)
+				{
+
+					temp.setCoord(x, i);
+					delete myMap[temp];
+					myMap.at(temp) = new Wall(temp, '#', 1);
+				}
+			}
+
+		}
 	}
 
-	//create gold and fortress
+	Deskard createGoldFortres(map <Deskard, GameObj*>& myMap, int sizeBoard)
 	{
-
 		int xGold;
 		int yGold;
-		xGold = (int)(game.getSizeBoard() / 2);
-		yGold = (game.getSizeBoard() - 2);
+		Deskard temp;
+		xGold = (int)(sizeBoard / 2);
+		yGold = (sizeBoard - 2);
 
 		temp.setCoord(xGold, yGold);
 
@@ -479,41 +473,75 @@ int main()
 		delete myMap[temp];
 		myMap.at(temp) = new Wall(temp, '#', 1);
 
+		return Deskard(xGold, yGold);
+	}
+};
+int main()
+{
+	srand(time(NULL));
+	HANDLE handl;
+	map <Deskard, GameObj*> myMap;
+	GameStatus game;
+	handl = GetStdHandle(STD_OUTPUT_HANDLE);
+	Deskard temp;
+	
+	
+	GameController startGame;
+	startGame.createBorder(myMap, game.getSizeBoard());
+	startGame.createWall(myMap, game.getSizeBoard(), game.getCapacty());
+	Deskard newPoint = startGame.createGoldFortres(myMap, game.getSizeBoard());
+	for (auto it = myMap.begin(); it != myMap.end(); ++it)
+	{
+		temp = it->first;
+		//temp.Print();
+		GameObj* test = it->second;
 
-		//create tank
+		SetConsoleCursorPosition(handl, temp.getCoord());
 
-		temp.setCoord(xGold-2, yGold);
-		GameObj* pTank = new  Tank(temp, 'X', 1);
-		delete myMap[temp];
-		myMap.at(temp) = pTank;
-				
-		//debugg
-		
-		Deskard viewDebugging;
-		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
-		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
+		test->show();
+	}
 
-		cout << endl;
-		
-		pTank->getKey().Print();
 
-		cout << endl;
-		pTank->neighbor(LEFT).Print();
+	
+	temp.setCoord(newPoint.getX()-2, newPoint.getY());
+	GameObj* pTank = new  Tank(temp, 'X', 1, handl);
+	Pleyer tankman;
+	delete myMap[temp];
+	myMap.at(temp) = pTank;
+	while (true)
+	{
+		pTank->neighbor(tankman.Drive()).Print();
 		Deskard nextStep;
-		bool go = (myMap[pTank->neighbor(LEFT)]->iAmObj() == "Area");
+		bool go = (myMap[pTank->neighbor(tankman.Drive())]->iAmObj() == "Area");
 		if (go)
 		{
 			temp = pTank->getKey();
-			nextStep = pTank->neighbor(LEFT);
+			nextStep = pTank->neighbor(tankman.Drive());
 			delete myMap[nextStep];
 			pTank->setKey(nextStep);
+			pTank->show();
 			myMap.at(nextStep) = pTank;
-			
+
 			myMap[temp] = new Area(temp, ' ');
-			cout << "hjhlhkjhklhl;hh" << endl;
-			//map <Deskard, GameObj*> myMap[pTank->getKey()].swap(myMap[pTank->neighbor(UP)]);
-			//myMap[pTank.]
-		}
+			myMap[temp]->show();
+	}
+	//debugg
+		
+	Deskard viewDebugging;
+	viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
+	SetConsoleCursorPosition(handl, viewDebugging.getCoord());
+
+	cout << endl;
+		
+	pTank->getKey().Print();
+
+	cout << endl;
+		
+	
+		cout << "hjhlhkjhklhl;hh" << endl;
+		//map <Deskard, GameObj*> myMap[pTank->getKey()].swap(myMap[pTank->neighbor(UP)]);
+		//myMap[pTank.]
+	}
 		/*if  ()
 		{
 
@@ -523,22 +551,12 @@ int main()
 		//test.Print();
 		
 		//nextStep.Print();
-	}
+	
 	
 	
 	
 	// test input	
-	for (auto it = myMap.begin(); it != myMap.end(); ++it)
-	{
-		temp = it->first;
-		//temp.Print();
-		GameObj* test = it->second;
-		
-		SetConsoleCursorPosition(handl, temp.getCoord());
-		
-		test->show();
-	}
-
+	
 	system("Pause");
 	return 0;
 }
