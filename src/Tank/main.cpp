@@ -137,19 +137,19 @@ public:
 		switch (dir)
 		{
 		case UP:
-			result.setCoord(kX, kY--);
+			result.setCoord(kX, --kY);
 			return result;
 			break;
 		case DOWN:
-			result.setCoord(kX, kY++);
+			result.setCoord(kX, ++kY);
 			return result;
 			break;
 		case LEFT:
-			result.setCoord(kX--, kY);
+			result.setCoord(--kX, kY);
 			return result;
 			break;
 		case RIGHT:
-			result.setCoord(kX++, kY);
+			result.setCoord(++kX, kY);
 			return result;
 			break;
 		}
