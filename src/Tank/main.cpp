@@ -484,8 +484,8 @@ int main()
 	GameStatus game;
 	handl = GetStdHandle(STD_OUTPUT_HANDLE);
 	Deskard temp;
-	
-	
+
+
 	GameController startGame;
 	startGame.createBorder(myMap, game.getSizeBoard());
 	startGame.createWall(myMap, game.getSizeBoard(), game.getCapacty());
@@ -502,14 +502,33 @@ int main()
 	}
 
 
-	
-	temp.setCoord(newPoint.getX()-2, newPoint.getY());
+
+	temp.setCoord(newPoint.getX() - 2, newPoint.getY());
 	GameObj* pTank = new  Tank(temp, 'X', 1, handl);
 	Pleyer tankman;
 	delete myMap[temp];
 	myMap.at(temp) = pTank;
+	pTank->show();
+
+	Deskard viewDebugging;
+
 	while (true)
 	{
+		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
+		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
+
+		cout << tankman.Drive();
+	}
+
+	system("Pause");
+	return 0;
+}
+	
+	/*while (true)
+	{
+		
+
+		cout << endl;
 		pTank->neighbor(tankman.Drive()).Print();
 		Deskard nextStep;
 		bool go = (myMap[pTank->neighbor(tankman.Drive())]->iAmObj() == "Area");
@@ -524,24 +543,20 @@ int main()
 
 			myMap[temp] = new Area(temp, ' ');
 			myMap[temp]->show();
-	}
+	}*/
 	//debugg
 		
-	Deskard viewDebugging;
-	viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
-	SetConsoleCursorPosition(handl, viewDebugging.getCoord());
-
-	cout << endl;
+	
 		
-	pTank->getKey().Print();
+	/*pTank->getKey().Print();
 
 	cout << endl;
 		
 	
-		cout << "hjhlhkjhklhl;hh" << endl;
+		cout << "hjhlhkjhklhl;hh" << endl;*/
 		//map <Deskard, GameObj*> myMap[pTank->getKey()].swap(myMap[pTank->neighbor(UP)]);
 		//myMap[pTank.]
-	}
+	//}
 		/*if  ()
 		{
 
@@ -557,6 +572,3 @@ int main()
 	
 	// test input	
 	
-	system("Pause");
-	return 0;
-}
