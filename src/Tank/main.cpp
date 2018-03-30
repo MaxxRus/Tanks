@@ -10,7 +10,7 @@
 
 using namespace std;
 
-enum eDiretion { LEFT = 97, RIGHT = 100, UP = 119, DOWN = 115, GAMEOVER = 0, FIRE};
+enum eDiretion { LEFT = 97, RIGHT = 100, UP = 119, DOWN = 115, GAMEOVER = 0, FIRE = 32, start = 1};
 
 class Deskard
 {
@@ -89,7 +89,13 @@ public: virtual eDiretion Drive() = 0;
 
 class Pleyer : public IMovable
 {
+	eDiretion dir;
 public:
+	Pleyer()
+	{
+		dir = start;
+	}
+
 	eDiretion Drive()
 	{
 		eDiretion dir;
@@ -179,6 +185,9 @@ public:
 		case RIGHT:
 			result.setCoord(++kX, kY);
 			return result;
+			break;
+		case start:
+			return iAm;
 			break;
 		}
 		//return iAm;
@@ -505,70 +514,44 @@ int main()
 
 	temp.setCoord(newPoint.getX() - 2, newPoint.getY());
 	GameObj* pTank = new  Tank(temp, 'X', 1, handl);
-	Pleyer tankman;
+	
 	delete myMap[temp];
 	myMap.at(temp) = pTank;
 	pTank->show();
 
+	Pleyer tankman;
+
 	Deskard viewDebugging;
+	Deskard nextStep;
 
 	while (true)
 	{
 		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
 		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
-
+		
 		cout << tankman.Drive();
-	}
+		eDiretion key = tankman.Drive();
+		Sleep(1000);
+		/*
+		bool go = (myMap[pTank->neighbor(key)]->iAmObj() == "Area");
+		if (go)
+		{
+			temp = pTank->getKey();
+			nextStep = pTank->neighbor(key);
+			delete myMap[nextStep];
+			pTank->setKey(nextStep);
+			pTank->show();
+			myMap.at(nextStep) = pTank;*/
+
+			/*myMap[temp] = new Area(temp, ' ');
+			myMap[temp]->show();*/
+		//}
+
+	};
 
 	system("Pause");
 	return 0;
 }
 	
-	/*while (true)
-	{
-		
-
-		cout << endl;
-		pTank->neighbor(tankman.Drive()).Print();
-		Deskard nextStep;
-		bool go = (myMap[pTank->neighbor(tankman.Drive())]->iAmObj() == "Area");
-		if (go)
-		{
-			temp = pTank->getKey();
-			nextStep = pTank->neighbor(tankman.Drive());
-			delete myMap[nextStep];
-			pTank->setKey(nextStep);
-			pTank->show();
-			myMap.at(nextStep) = pTank;
-
-			myMap[temp] = new Area(temp, ' ');
-			myMap[temp]->show();
-	}*/
-	//debugg
-		
 	
-		
-	/*pTank->getKey().Print();
-
-	cout << endl;
-		
-	
-		cout << "hjhlhkjhklhl;hh" << endl;*/
-		//map <Deskard, GameObj*> myMap[pTank->getKey()].swap(myMap[pTank->neighbor(UP)]);
-		//myMap[pTank.]
-	//}
-		/*if  ()
-		{
-
-		}*/
-		//sey = pTank->iAmObj();
-		//cout << sey << endl;
-		//test.Print();
-		
-		//nextStep.Print();
-	
-	
-	
-	
-	// test input	
 	
