@@ -86,7 +86,6 @@ class IMovable
 public: virtual eDiretion Drive() = 0; 
 };
 
-
 class Pleyer : public IMovable
 {
 	eDiretion dir;
@@ -123,8 +122,6 @@ public:
 		}
 	}
 };
-	
-
 
 class GameStatus
 {
@@ -300,9 +297,6 @@ public:
 
 };
 
-
-
-
 class Tank : public GameObj
 {
 	int hitpoint;
@@ -322,39 +316,9 @@ public:
 	void move(eDiretion dir)
 	{
 		this->dir = dir;
-		//Deskard nextstep;
-		//nextstep = this->neighbor(dir);
+
 		
-	//	Deskard point = this->getKey;
-	//	switch (dir)
-	//	{
-	//	case UP:
-
-	//		/*SetConsoleCursorPosition(handl, coordTank);
-	//		cout << " ";
-	//		coordTank.Y--;*/
-	//		this->show();
-	//		break;
-	//	case DOWN:
-	//		/*SetConsoleCursorPosition(handl, coordTank);
-	//		cout << " ";
-	//		coordTank.Y++;*/
-	//		this->show();
-	//		break;
-	//	case LEFT:
-	//		/*SetConsoleCursorPosition(handl, coordTank);
-	//		cout << " ";
-	//		coordTank.X--;*/
-	//		this->show();
-	//		break;
-	//	case RIGHT:
-	//		/*SetConsoleCursorPosition(handl, coordTank);
-	//		cout << " ";
-	//		coordTank.X++;*/
-	//		this->show();
-	//		break;
-
-	//	}
+	
 	}
 	
 
@@ -509,9 +473,7 @@ int main()
 
 		test->show();
 	}
-
-
-
+	
 	temp.setCoord(newPoint.getX() - 2, newPoint.getY());
 	GameObj* pTank = new  Tank(temp, 'X', 1, handl);
 	
@@ -532,20 +494,23 @@ int main()
 		cout << tankman.Drive();
 		eDiretion key = tankman.Drive();
 		Sleep(1000);
-		/*
+
+		
 		bool go = (myMap[pTank->neighbor(key)]->iAmObj() == "Area");
 		if (go)
 		{
 			temp = pTank->getKey();
 			nextStep = pTank->neighbor(key);
-			delete myMap[nextStep];
+			
 			pTank->setKey(nextStep);
-			pTank->show();
-			myMap.at(nextStep) = pTank;*/
+			
 
+			swap(myMap[nextStep], myMap[temp]);
+			myMap[nextStep]->show();
+			myMap[temp]->show();
 			/*myMap[temp] = new Area(temp, ' ');
 			myMap[temp]->show();*/
-		//}
+		}
 
 	};
 
