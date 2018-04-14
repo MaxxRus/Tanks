@@ -97,7 +97,7 @@ public:
 
 	eDiretion Drive()
 	{
-		eDiretion dir;
+		eDiretion dir=start;
 		if (_kbhit())
 		{
 			switch (_getch())
@@ -118,9 +118,12 @@ public:
 				dir = FIRE;
 			break;
 			}
-			return dir;
+			
 		}
+		return dir;
 	}
+
+
 };
 
 class GameStatus
@@ -149,6 +152,7 @@ private:
 	//char view;
 public:
 	//virtual GameObj* clone() const = 0;
+	virtual eDiretion move() { return start; };
 	Deskard getKey()
 	{
 		return key;
@@ -302,7 +306,7 @@ class Tank : public GameObj
 	int hitpoint;
 	eDiretion dir;
 	HANDLE handl;
-	//IMovable drive;
+	IMovable *tankMan;
 
 public:
 	/*Tank(IMovable move) :drive(move)
@@ -313,19 +317,18 @@ public:
 		int direction = drive.Drive();
 	}*/
 
-	void move(eDiretion dir)
+	eDiretion move()
 	{
-		this->dir = dir;
-
-		
-	
+		dir = this->tankMan->Drive();
+		return dir;
 	}
 	
 
-	Tank(Deskard value, char img, int hit, HANDLE handl) : GameObj(value)
+	Tank(Deskard value, char img, int hit, HANDLE handl, IMovable *tankMan) : GameObj(value)
 	{
 		hitpoint = hit;
 		this->handl = handl;
+		this->tankMan = tankMan;
 	}
 
 	string iAmObj()
@@ -475,13 +478,14 @@ int main()
 	}
 	
 	temp.setCoord(newPoint.getX() - 2, newPoint.getY());
-	GameObj* pTank = new  Tank(temp, 'X', 1, handl);
+	Pleyer tankman;
+	GameObj* pTank = new  Tank(temp, 'X', 1, handl, &tankman);
 	
 	delete myMap[temp];
 	myMap.at(temp) = pTank;
 	pTank->show();
 
-	Pleyer tankman;
+	
 
 	Deskard viewDebugging;
 	Deskard nextStep;
@@ -491,12 +495,15 @@ int main()
 		viewDebugging.setCoord(game.getSizeBoard() + 5, game.getSizeBoard());
 		SetConsoleCursorPosition(handl, viewDebugging.getCoord());
 		
-		cout << tankman.Drive();
-		eDiretion key = tankman.Drive();
-		Sleep(1000);
-
 		
-		bool go = (myMap[pTank->neighbor(key)]->iAmObj() == "Area");
+		eDiretion key = pTank->move();
+		//Sleep(1000);
+		bool go = false;
+		if (key != 1)
+		{
+			go = (myMap[pTank->neighbor(key)]->iAmObj() == "Area");
+		}
+		
 		if (go)
 		{
 			temp = pTank->getKey();
